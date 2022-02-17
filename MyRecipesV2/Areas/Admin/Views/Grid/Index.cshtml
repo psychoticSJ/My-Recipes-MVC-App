@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<kendo-grid name="grid" height="550">
+        <columns>
+            <column field="OrderID" title="Order ID">
+                <filterable enabled="false"></filterable>
+            </column>
+            <column field="Freight" title="Freight" />
+            <column field="OrderDate" title="Order Date" format="{0:MM/dd/yyyy}" />
+            <column field="ShipName" title="Ship Name" />
+            <column field="ShipCity" title="Ship City" />
+        </columns>
+        <scrollable enabled="true" />
+        <sortable enabled="true" />
+        <pageable enabled="true" />
+        <filterable enabled="true" />
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <transport>
+                <read url="@Url.Action("Orders_Read", "Grid")" />
+            </transport>
+        </datasource>
+    </kendo-grid>

@@ -1,0 +1,43 @@
+﻿
+@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="alert alert-success alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Congratulations!</strong> You successfully tied your shoelace!
+</div>*@
+
+
+       <div class="row pb-3 backgroundWhite">
+
+        @for (int i = 0; i < Model.Rows.Count; i++)
+        {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
+                    <div class="card" style="border:0px;">
+                        <img src="@Model.Rows[i]["Image1URL"]" class="card-img-top rounded" />
+                        <div class="pl-1">
+                            <p class="card-title h5"><b style="color:#2c3e50">@Model.Rows[i]["Name"]</b></p>
+                            <p class="card-title text-primary"><b>by @Model.Rows[i]["SubmittedBy"]</b></p>
+                        </div>
+                        <div style="padding-left:5px;">
+                            <p><b>Description:</b><br />@Model.Rows[i]["Description"]</p>
+                        </div>
+                        <div style="padding-left:5px;">
+                            <p style="color:maroon">Submitted Date: @Model.Rows[i]["SubmittedDate"]</p>
+                        </div>
+                    </div>
+                    <div>
+                        <a asp-action="RecipeDetails" asp-route-id="@Model.Rows[i]["Id"]" class="btn btn-primary form-control">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+
+

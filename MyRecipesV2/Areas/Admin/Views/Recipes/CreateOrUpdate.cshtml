@@ -1,0 +1,190 @@
+﻿@model MyRecipesV2.Models.ViewModels.RecipesViewModel
+
+@{
+    ViewData["Title"] = Model.Recipe.Id== 0 ? "Add Recipe" : "Edit Recipe";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+
+<div class="container">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Recipe.Id" />
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Name" class="control-label"></label>
+                        <input asp-for="Recipe.Name" class="form-control" />
+                        <span asp-validation-for="Recipe.Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Description" class="control-label"></label>
+                        <input asp-for="Recipe.Description" class="form-control" />
+                        <span asp-validation-for="Recipe.Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Ingredients" class="control-label"></label>
+                        <input asp-for="Recipe.Ingredients" class="form-control" />
+                        <span asp-validation-for="Recipe.Ingredients" class="text-danger"></span>
+                    </div>
+                    </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Category" class="control-label"></label>
+                        <div>
+                        @Html.DropDownListFor(m => m.Recipe.Category, Model.CategoryList, "--Select a Category--", new {@class="form-control"})                  
+                        <span asp-validation-for="Recipe.Category" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-5">
+                    <label asp-for="Recipe.SubCategory" class="control-label"></label>
+                    <div>
+                        @Html.DropDownListFor(m => m.Recipe.SubCategory, Model.SubCategoryList, "--Select a Category--", new {@class="form-control"})                  
+                        <span asp-validation-for="Recipe.SubCategory" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.NumberOfServings" class="control-label"></label>
+                        <input asp-for="Recipe.NumberOfServings" class="form-control" />
+                        <span asp-validation-for="Recipe.NumberOfServings" class="text-danger"></span>
+                    </div>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.PrepTime" class="control-label"></label>
+                        <input asp-for="Recipe.PrepTime" class="form-control" />
+                        <span asp-validation-for="Recipe.PrepTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.CookTime" class="control-label"></label>
+                        <input asp-for="Recipe.CookTime" class="form-control" />
+                        <span asp-validation-for="Recipe.CookTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Step1" class="control-label"></label>
+                        <input asp-for="Recipe.Step1" class="form-control" />
+                        <span asp-validation-for="Recipe.Step1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Step2" class="control-label"></label>
+                        <input asp-for="Recipe.Step2" class="form-control" />
+                        <span asp-validation-for="Recipe.Step2" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Step3" class="control-label"></label>
+                        <input asp-for="Recipe.Step3" class="form-control" />
+                        <span asp-validation-for="Recipe.Step3" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Step4" class="control-label"></label>
+                        <input asp-for="Recipe.Step4" class="form-control" />
+                        <span asp-validation-for="Recipe.Step4" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Step5" class="control-label"></label>
+                        <input asp-for="Recipe.Step5" class="form-control" />
+                        <span asp-validation-for="Recipe.Step5" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.NutritionFacts" class="control-label"></label>
+                        <input asp-for="Recipe.NutritionFacts" class="form-control" />
+                        <span asp-validation-for="Recipe.NutritionFacts" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label class="control-label">Image</label>
+                        <div>
+                            <input type="file" name="files" id="imageUploadBox" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label class="control-label">Video</label>
+                        <div>
+                            <input type="file" name="files" id="videoUploadBox" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <label asp-for="Recipe.Tags" class="control-label"></label>
+                        <input asp-for="Recipe.Tags" class="form-control" />
+                        <span asp-validation-for="Recipe.Tags" class="text-danger"></span>
+                    </div> <br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                    <div class="form-group">
+                        @{var btnText = Model.Recipe.Id == 0 ? "Create" : "Update"; }
+                        <input type="submit" onclick="return validateImageAndVideoUploads()"  value="@btnText" class="k-button" />
+                    </div>
+                </div>    
+                <div class="col-1">
+                    <div>
+                        <input type="submit" class="k-button" asp-action="ListOfRecipes" value="Back to List" />
+                    </div>
+                </div>
+            </div>
+        </form>            
+</div>
+
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        funtion validateImageAndVideoUploads(){
+                //if (document.getElementById("imageUploadBox").value = ""){
+                //    //swal("Error", "Please select an image", "error");
+                //    return false;
+                //}
+                //uncomment this function to make video upload a requirement
+                //if (document.getElementById("videoUploadBox").value = ""){
+                //    swal("Error", "Please select a video", "error");
+                //    return false;
+                //}
+                return true;
+            }
+    </script>
+    
+}

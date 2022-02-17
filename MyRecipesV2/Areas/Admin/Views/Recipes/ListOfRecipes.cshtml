@@ -1,0 +1,67 @@
+﻿@*@model System.Data.DataTable*@
+
+@{
+    ViewData["Title"] = "List of Recipes";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-primary">Recipes List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="k-button" asp-action="CreateOrUpdate">Create New Recipe</a>
+    </div>
+</div>
+
+<br />
+
+        @(Html.Kendo().Grid <MyRecipesV2.Models.Recipes>()
+        .Name("recipeGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.Id).Filterable(false).Visible(false);
+            columns.Bound(p => p.Name);
+            columns.Bound(p => p.Description).Width(400);
+            columns.Bound(p => p.Ingredients).Width(250);
+            columns.Bound(p => p.NumberOfServings);
+            columns.Bound(p => p.PrepTime);
+            columns.Bound(p => p.CookTime);
+            columns.Bound(p => p.TotalTime);
+        })
+        .Pageable()
+        .Sortable()
+        .Scrollable()
+        .Filterable()
+        .HtmlAttributes(new { style = "height:550px;" })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(20)
+            .Read(read => read.Action("GetRecipes", "Recipes"))
+            )
+    )
+
+    @*<kendo-grid name="recipesGrid" height="550">
+        <columns>
+            <column field="ID" title="Recipe ID">
+                <filterable enabled="false"></filterable>
+                
+            </column>
+            <column field="Name" title="Name" />
+            <column field="Description" title="Description" />
+            <column field="Ingredients" title="Ingredients" />
+            <column style="width: 50%" field="CategoryDescription" title="Category" />
+            <column field="NumberOfServings" title="Number Of Servings" />
+            <column field="PrepTime" title="Prep Time" />
+            <column field="CookTime" title="Cook Time" />
+            <column field="TotalTime" title="Total Time" />
+        </columns>
+        <scrollable enabled="true" />        
+        <sortable enabled="true" />
+        <pageable enabled="true" />
+        <filterable enabled="true" />
+        <datasource type="DataSourceTagHelperType.Ajax" page-size="20">
+            <transport>
+                <read url="@Url.Action("GetRecipes", "Recipes")" />
+            </transport>
+        </datasource>
+    </kendo-grid>*@
